@@ -8,6 +8,9 @@ import AlertMessage from './components/AlerteMessage';
 import Edit from './pages/UpdateInventory';
 import CreatePost from './pages/MyCollection';
 import Post from './pages/Inventory';
+import { signInWithPopup } from 'firebase/auth';
+import { useEffect } from 'react';
+import { auth, Providers } from './config/firebase';
 
 function App () {
   const [myName, setMyName] = useState('');
@@ -47,20 +50,37 @@ function App () {
         flashMessage("You have logged out", "primary");
     }
 
+    const [value, setValue] = useState('')
 
+    const handleClick=()=>{
+        signInWithPopup(auth,Providers).then((data)=>{
+            setValue(data.user.email)
+            localStorage.setItem('email', data.user.email)
+        })
+
+    }
+
+    useEffect(() => {
+        setValue(localStorage.getItem('email'))
+    })
+
+    const LogOut=()=>{
+      localStorage.removeItem('email');
+      window.location.reload()
+    }
   return (
     <>
-      <Navbar city={myCity} name={myName} updateUser={updateUserInfo} loggedIn={loggedIn} logUserOut={logUserOut} />
+      <Navbar city={myCity} name={myName} handleClick={handleClick} value={value} LogOut={LogOut} updateUser={updateUserInfo} loggedIn={loggedIn} logUserOut={logUserOut} />
       <div className="container">
         {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
       <h1 className='text-center'> GG Boissons</h1> 
         <Routes>
-          <Route path="/create" element={<CreatePost loggedIn={loggedIn} flashMessage={flashMessage}/>} />
-          <Route path="/" element={<Home loggedIn={loggedIn} flashMessage={flashMessage}/>} />
+          <Route path="/create" element={<CreatePost value={value} loggedIn={loggedIn} flashMessage={flashMessage}/>} />
+          <Route path="/" element={<Home value={value} loggedIn={loggedIn} flashMessage={flashMessage}/>} />
           <Route path="/login" element={<Login flashMessage={flashMessage} logUserIn={logUserIn}/>} />
           <Route path="/sign_up" element={<SignUp flashMessage={flashMessage}/>} />
-          <Route path="/edit" element={<Edit loggedIn={loggedIn} flashMessage = {flashMessage}/>} />
-          <Route path="/post" element={<Post flashMessage={flashMessage}/>} />
+          <Route path="/edit" element={<Edit value={value} loggedIn={loggedIn} flashMessage = {flashMessage}/>} />
+          <Route path="/post" element={<Post value={value} flashMessage={flashMessage}/>} />
         </Routes>
         
       </div>

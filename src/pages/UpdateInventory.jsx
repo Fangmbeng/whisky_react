@@ -5,7 +5,7 @@ export default function Edit (props) {
 
   const navigate = useNavigate();
     useEffect(() => {
-        if (!props.loggedIn){
+        if (!props.loggedIn || !props.value){
             props.flashMessage('You must be logged in to view this page', 'danger');
             navigate('/');
         }
@@ -40,7 +40,7 @@ export default function Edit (props) {
         let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol, id})
 
         // Make the fetch request
-        let response = await fetch(`http://127.0.0.1:5000/api/post/edit/${id}`, {
+        let response = await fetch(`https://whisky-collection.onrender.com//api/post/edit/${id}`, {
             method: 'POST',
             headers: myHeaders,
             body: requestBody

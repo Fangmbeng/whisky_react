@@ -5,7 +5,7 @@ export default function CreatePost(props) {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if (!props.loggedIn){
+        if (!props.value || props.loggedIn){
             props.flashMessage('You must be logged in to view this page', 'danger');
             navigate('/login');
         }
@@ -32,7 +32,7 @@ export default function CreatePost(props) {
         let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol})
 
         // Make the fetch request
-        let response = await fetch("http://127.0.0.1:5000/api/posts", {
+        let response = await fetch("https://whisky-collection.onrender.com//api/posts", {
             method: 'POST',
             headers: myHeaders,
             body: requestBody

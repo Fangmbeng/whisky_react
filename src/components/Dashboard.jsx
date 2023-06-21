@@ -28,7 +28,7 @@ function Dashboard({user, post, key, flashMessage}) {
 
     let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol, id})
     // Make the fetch request
-    let response = await fetch(`http://127.0.0.1:5000/api/post/delete/${id}`, {
+    let response = await fetch(`https://whisky-collection.onrender.com//api/post/delete/${id}`, {
         method: 'POST',
         headers: myHeaders,
         body: requestBody
@@ -51,8 +51,8 @@ function Dashboard({user, post, key, flashMessage}) {
             </div>
             <div className="card-body">
             <blockquote class="blockquote mb-0">
-                <p>{ post.alcohol_level }</p>
-                <p>{ post.class_alcohol }%</p>
+                <p>alchohol level: { post.alcohol_level }%</p>
+                <p>{ post.class_alcohol }</p>
                 <p>Posted by {user}</p>
                 <p>{post.date_created}</p>
                 <footer className="blockquote-footer">

@@ -30,6 +30,7 @@ export default function Login(props) {
             localStorage.setItem('tokenExp', expiration);
             localStorage.setItem('user', username)
 
+
             // flash a success message and redirect back home
             props.flashMessage('You have successfully logged in', 'success');
             props.logUserIn();
@@ -42,14 +43,14 @@ export default function Login(props) {
     }
 
     return (
-        <>
+        <> 
             <h3 className="text-center">Login</h3>
             <form action="" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input type="text" className="form-control my-3" placeholder='Enter Username' name='username' />
                     <input type="password" className="form-control my-3" placeholder='Enter Password' name='password' />
                     <a href="/sign_up">forgot password ?</a>
-                    <input type="submit" value="Log In" className="btn btn-success w-100 m-3" />
+                    <input type="submit" value="Log In" className="btn btn-success w-100 mt-3 mb-3" />
                     <a href="/sign_up">Click here if you are new</a>
                 </div>
             </form>
