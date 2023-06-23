@@ -8,7 +8,7 @@ function Dashboard({user, post, key, flashMessage}) {
   const navigate = useNavigate();
 
   function handleEdit(){
-      navigate('/edit');
+      navigate("/edit");
       localStorage.setItem("id", post.id)
   }
 
@@ -25,10 +25,11 @@ function Dashboard({user, post, key, flashMessage}) {
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json')
     myHeaders.append('Authorization', `Bearer ${token}`);
+    myHeaders.append('Access-Control-Allow-Origin', '*')
 
     let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol, id})
     // Make the fetch request
-    let response = await fetch(`https://whisky-collection.onrender.com//api/post/delete/${id}`, {
+    let response = await fetch(`https://whisky-collection.onrender.com/api/post/delete/${id}`, {
         method: 'POST',
         headers: myHeaders,
         body: requestBody
@@ -36,7 +37,8 @@ function Dashboard({user, post, key, flashMessage}) {
 
     if (response.ok){
         flashMessage(`Drink has been deleted`, 'primary')
-        //window.location.reload()
+        setTimeout(20000)
+        window.location.reload()
 
     } else {
         flashMessage("There was an issue, please try again", 'warning');

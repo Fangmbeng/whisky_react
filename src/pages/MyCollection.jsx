@@ -5,7 +5,7 @@ export default function CreatePost(props) {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if (!props.value || props.loggedIn){
+        if (!(props.loggedIn || props.value)){
             props.flashMessage('You must be logged in to view this page', 'danger');
             navigate('/login');
         }
@@ -21,28 +21,29 @@ export default function CreatePost(props) {
         let class_alcohol = event.target.class.value;
 
         // Get the token from localStorage
-        let token = localStorage.getItem('token');
+        //let token = localStorage.getItem('token');
 
         // Set up the request headers
         let myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json')
-        myHeaders.append('Authorization', `Bearer ${token}`);
+        //myHeaders.append('Authorization', `Bearer ${token}`);
+
 
         // Set up the request body
         let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol})
 
         // Make the fetch request
-        let response = await fetch("https://whisky-collection.onrender.com//api/posts", {
+        let response = await fetch("https://whisky-collection.onrender.com/api/posts", {
             method: 'POST',
             headers: myHeaders,
-            body: requestBody
+            body: requestBody,
         })
 
 
         if (response.ok){
             let data = await response.json();
             props.flashMessage(`${data.brand} has been created`, 'primary');
-            navigate('/')
+            navigate('/post')
         } else {
             props.flashMessage("There was an issue, please try again", 'warning');
         }

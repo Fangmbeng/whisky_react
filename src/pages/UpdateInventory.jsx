@@ -5,7 +5,7 @@ export default function Edit (props) {
 
   const navigate = useNavigate();
     useEffect(() => {
-        if (!props.loggedIn || !props.value){
+        if (!(props.loggedIn || props.value)){
             props.flashMessage('You must be logged in to view this page', 'danger');
             navigate('/');
         }
@@ -22,12 +22,13 @@ export default function Edit (props) {
         let id = localStorage.getItem("id")
 
         // Get the token from localStorage
-        let token = localStorage.getItem('token');
+        //let token = localStorage.getItem('token');
 
         // Set up the request headers
         let myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json')
-        myHeaders.append('Authorization', `Bearer ${token}`);
+        //myHeaders.append('Authorization', `Bearer ${token}`)
+ 
 
         // Set up the request body
     
@@ -40,7 +41,7 @@ export default function Edit (props) {
         let requestBody = JSON.stringify({brand, alcohol_level, class_alcohol, id})
 
         // Make the fetch request
-        let response = await fetch(`https://whisky-collection.onrender.com//api/post/edit/${id}`, {
+        let response = await fetch(`https://whisky-collection.onrender.com/api/post/edit/${id}`, {
             method: 'POST',
             headers: myHeaders,
             body: requestBody
@@ -48,8 +49,8 @@ export default function Edit (props) {
 
         if (response.ok){
             let data = await response.json();
-            setTimeout((props.flashMessage(`${data.brand} has been edited`, 'primary')), 100);
-            navigate('/')
+            setTimeout((props.flashMessage(`${data.brand} has been edited`, 'primary')), 10000);
+            navigate('/post')
             localStorage.removeItem('id')
         } else {
             props.flashMessage("There was an issue, please try again", 'warning');

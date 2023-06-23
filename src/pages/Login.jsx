@@ -8,15 +8,23 @@ export default function Login(props) {
     const handleSubmit = async event => {
         event.preventDefault();
         // Get the data from the form
+        
         let username = event.target.username.value;
         let password = event.target.password.value;
-        let stringToEncode = `${username}:${password}`
+        //let stringToEncode = `${username}:${password}`
+        
 
         let myHeaders = new Headers();
-        myHeaders.append('Authorization', `Basic ${btoa(stringToEncode)}`);
+        //myHeaders.append('Authorization', `Basic ${btoa(stringToEncode)}`)
+        myHeaders.append('Content-Type', 'application/json')
+        myHeaders.append('Access-Control-Allow-Origin', '*');
 
-        let response = await fetch("http://127.0.0.1:5000/api/token", {
-            headers: myHeaders
+        let requestBody = JSON.stringify({username, password})
+
+        let response = await fetch("https://whisky-collection.onrender.com/api/user", {
+            method:'POST',
+            headers: myHeaders,
+            body: requestBody
         })
 
         if (response.ok){
@@ -29,6 +37,7 @@ export default function Login(props) {
             localStorage.setItem('token', token);
             localStorage.setItem('tokenExp', expiration);
             localStorage.setItem('user', username)
+            localStorage.removeItem("password", password)
 
 
             // flash a success message and redirect back home

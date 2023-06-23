@@ -29,7 +29,7 @@ export default class SignUp extends Component {
                 password
             })
 
-            fetch("http://127.0.0.1:5000/api/users", {
+            fetch("https://whisky-collection.onrender.com/api/users", {
                 method: 'POST',
                 headers: myHeaders,
                 body: formData
