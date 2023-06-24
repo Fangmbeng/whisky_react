@@ -36,7 +36,7 @@ function Dashboard({user, post, key, flashMessage, props}) {
 
     if (response.ok){
         flashMessage(`Drink has been deleted`, 'primary')
-        navigate("/post");
+        navigate('/post');
         window.location.reload()
 
     } else {
