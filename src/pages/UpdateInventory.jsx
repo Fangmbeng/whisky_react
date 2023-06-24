@@ -50,7 +50,7 @@ export default function Edit (props) {
         if (response.ok){
             let data = await response.json();
             setTimeout((props.flashMessage(`${data.brand} has been edited`, 'primary')), 10000);
-            navigate('/post')
+            navigate('/posts')
             localStorage.removeItem('id')
         } else {
             props.flashMessage("There was an issue, please try again", 'warning');

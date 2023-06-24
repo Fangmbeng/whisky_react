@@ -43,7 +43,7 @@ export default function CreatePost(props) {
         if (response.ok){
             let data = await response.json();
             props.flashMessage(`${data.brand} has been created`, 'primary');
-            navigate('/post')
+            navigate('/posts')
         } else {
             props.flashMessage("There was an issue, please try again", 'warning');
         }

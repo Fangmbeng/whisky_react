@@ -80,7 +80,7 @@ function App () {
           <Route path="/login" element={<Login flashMessage={flashMessage} logUserIn={logUserIn}/>} />
           <Route path="/sign_up" element={<SignUp flashMessage={flashMessage}/>} />
           <Route path="/edit" element={<Edit value={value} loggedIn={loggedIn} flashMessage = {flashMessage}/>} />
-          <Route path="/post" element={<Post value={value} loggedIn={loggedIn} flashMessage={flashMessage}/>} />
+          <Route path="/posts" element={<Post value={value} loggedIn={loggedIn} flashMessage={flashMessage}/>} />
         </Routes>
         
       </div>

@@ -17,7 +17,7 @@ function Home(props) {
       <div className="position-absolute top-50 start-50 translate-middle">
       {props.loggedIn || props.value ? (
                     <>
-                    <Link className='btn btn-success' to='/post'>Access Inventory</Link>
+                    <Link className='btn btn-success' to='/posts'>Access Inventory</Link>
                     </>
                 ) : (
                     <>

@@ -43,7 +43,7 @@ export default function Login(props) {
             // flash a success message and redirect back home
             props.flashMessage('You have successfully logged in', 'success');
             props.logUserIn();
-            navigate('/post');
+            navigate('/posts');
         } else {
             // flash a fail message
             props.flashMessage('Your username and/or password are incorrect', 'danger');

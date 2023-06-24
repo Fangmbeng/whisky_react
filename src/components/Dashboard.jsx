@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -35,8 +35,8 @@ function Dashboard({user, post, key, flashMessage, props}) {
     })
 
     if (response.ok){
-        flashMessage(`Drink has been deleted`, 'primary')
-        navigate('/post');
+        flashMessage(`Drink has been deleted`, 'primary');
+        navigate('/posts')
         window.location.reload()
 
     } else {

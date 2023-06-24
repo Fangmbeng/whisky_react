@@ -12,7 +12,7 @@ export default function Navbar (props) {
                 <Link className='nav-link text-danger-emphasis' to='/'>Home</Link>
                 {props.loggedIn || props.value? (
                     <>
-                    <Link className='nav-link text-success' to='/post'>Drink Inventory</Link>
+                    <Link className='nav-link text-success' to='/posts'>Drink Inventory</Link>
                     <Link className='nav-link text-primary' to='/create'>Add Invzntory</Link>
                     <Link className='nav-link text-warning' to='/' onClick={props.logUserOut}>Log Out</Link>
                     <button className='btn btn' onClick={props.LogOut}>LogOut with Google</button>
