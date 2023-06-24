@@ -6,12 +6,6 @@ function Dashboard({user, post, key, flashMessage}) {
 
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!(props.loggedIn || props.value)){
-        props.flashMessage('You must be logged in to view this page', 'danger');
-        navigate('/login');
-    }
-})
 
   function handleEdit(){
       navigate("/edit");
