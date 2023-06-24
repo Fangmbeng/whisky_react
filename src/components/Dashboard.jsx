@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-function Dashboard({user, post, key, flashMessage}) {
+function Dashboard({user, post, key, flashMessage, props}) {
+  useEffect(() => {
+    if (!(props.loggedIn || props.value)){
+        props.flashMessage('You must be logged in to view this page', 'danger');
+        navigate('/login');
+    }
+})
 
 
   const navigate = useNavigate();
@@ -37,6 +43,7 @@ function Dashboard({user, post, key, flashMessage}) {
 
     if (response.ok){
         flashMessage(`Drink has been deleted`, 'primary')
+        navigate("/post");
         window.location.reload()
 
     } else {
