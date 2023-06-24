@@ -3,13 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Dashboard({user, post, key, flashMessage, props}) {
-  useEffect(() => {
-    if (!(props.loggedIn || props.value)){
-        props.flashMessage('You must be logged in to view this page', 'danger');
-        navigate('/login');
-    }
-})
-
 
   const navigate = useNavigate();
 
