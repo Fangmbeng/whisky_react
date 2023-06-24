@@ -31,7 +31,7 @@ export default function Post(props) {
 
     return (
         <>
-            {posts.map( post => <Dashboard user={user} key={post.id} post={post} flashMessage={props.flashMessage}/>)}
+            {posts.map( post => <Dashboard user={user} value={props.value} loggedIn={props.loggedIn} key={post.id} post={post} flashMessage={props.flashMessage}/>)}
         </>
     )
 }

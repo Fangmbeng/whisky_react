@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.jsx';
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react';
 import Home from './pages/Home.jsx'
@@ -82,7 +82,6 @@ function App () {
           <Route path="/edit" element={<Edit value={value} loggedIn={loggedIn} flashMessage = {flashMessage}/>} />
           <Route path="/posts" element={<Post value={value} loggedIn={loggedIn} flashMessage={flashMessage}/>} />
         </Routes>
-        
       </div>
     </>
   );

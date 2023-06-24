@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-function Dashboard({user, post, key, flashMessage, props}) {
+function Dashboard({user, post, key, flashMessage, loggedIn, value}) {
 
   const navigate = useNavigate();
 
@@ -34,11 +34,14 @@ function Dashboard({user, post, key, flashMessage, props}) {
         body: requestBody
     })
 
-    if (response.ok){
-        flashMessage(`Drink has been deleted`, 'primary');
-        navigate('/posts')
-        window.location.reload()
-
+    if(response.ok){
+        if (loggedIn || value){
+          flashMessage(`Drink has been deleted`, 'primary');
+          navigate('/posts')
+          window.location.reload()
+        }else{
+          navigate('/login')
+        }
     } else {
         flashMessage("There was an issue, please try again", 'warning');
     }
